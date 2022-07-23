@@ -1,0 +1,19 @@
+ ::ng-deep .cdk-overlay-container {
+    z-index: 1200 !important;
+  }
+
+  .yellow-theme {
+    background-color: #ffba00;
+  }
+
+  .dark-theme {
+    background-color: #28323e;
+  }
+
+  h1, h2 {
+    color: white;
+  }
+
+  .white-font {
+    color: whitesmoke;
+  }

@@ -1,0 +1,91 @@
+<nav class="navbar navbar-light dark-theme">
+    <div class="container">
+        <p class="display-4 white-font">Zarządzanie klientami</p>
+        <div class="d-flex">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">+ Dodaj klienta</button>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Birth Date</th>
+                <th scope="col">Craft</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Andrzej</td>
+                <td>Wklakson</td>
+                <td>22.05.1990</td>
+                <td>Finanse</td>
+                <td>
+                    <button class="btn btn-outline-primary">Edytuj</button>
+                    <button class="btn btn-outline-danger mx-1">Usuń</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header dark-theme">
+          <h1 class="modal-title" id="exampleModalLabel">Dodawanie klienta</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="profileForm" class="form-container">
+                <p>
+                    <mat-form-field appearance="legacy" required>
+                        <mat-label>Podaj Imię</mat-label>
+                        <input matInput formControlName="firstName" placeholder="Imię">
+                        <mat-hint></mat-hint>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field appearance="legacy" required>
+                        <mat-label>Podaj Nazwisko</mat-label>
+                        <input matInput formControlName="lastName" placeholder="Nazwisko">
+                        <mat-hint></mat-hint>
+                    </mat-form-field>
+                </p>           
+                <p>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Branża</mat-label>
+                        <select matNativeControl formControlName="craft">
+                        <option value="volvo">Finanse</option>
+                        <option value="saab">Media</option>
+                        <option value="mercedes">Podróże</option>
+                        </select>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Data urodzenia</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="birth">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                        <mat-datepicker #picker class="modal"></mat-datepicker>
+                    </mat-form-field>
+                </p>
+            </form>          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+          <button type="button" (click)="saveForm()" class="btn btn-success">Dodaj</button>
+        </div>
+      </div>
+    </div>
+  </div>
