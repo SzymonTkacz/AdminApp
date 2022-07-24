@@ -7,22 +7,23 @@ import { ClientModel } from "../client-dashboard/client.model";
     providedIn: 'root'
 })
 export class ClientService {
+    private clientsUrl = "http://localhost:3000/clients/"
     constructor(private http: HttpClient) {}
 
     addClient(data: ClientModel) {
-        return this.http.post<ClientModel>("http://localhost:3000/clients", data).pipe(map((res:any) => {
+        return this.http.post<ClientModel>(this.clientsUrl, data).pipe(map((res:any) => {
             return res
         }))
     }
 
     updateClient(data: ClientModel) {
-        return this.http.put<ClientModel>("http://localhost:3000/clients/" + data.id, data).pipe(map((res:any) => {
+        return this.http.put<ClientModel>(this.clientsUrl + data.id, data).pipe(map((res:any) => {
             return res
         }))
     }
 
     deleteClient(id: number) {
-        return this.http.delete<any>("http://localhost:3000/clients/" + id).pipe(map((res:any) => {
+        return this.http.delete<any>(this.clientsUrl + id).pipe(map((res:any) => {
             return res
         }))
     }

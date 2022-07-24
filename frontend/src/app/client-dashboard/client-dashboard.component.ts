@@ -30,7 +30,6 @@ export class ClientDashboardComponent implements OnInit {
   getClients() {
     this.clientService.getClients().subscribe(res => {
       this.clientData = res;
-      console.log(this.clientData)
     })
   }
 
