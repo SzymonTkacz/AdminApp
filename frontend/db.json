@@ -1,0 +1,91 @@
+{
+  "clients": [
+    {
+      "id": 4,
+      "firstName": "Jadwiga",
+      "lastName": "SDAD",
+      "birth": "04.02.1997",
+      "industry": "Media"
+    },
+    {
+      "id": 5,
+      "firstName": "Anna",
+      "lastName": "Klawiatura",
+      "birth": "2022-07-18T22:00:00.000Z",
+      "industry": "volvo"
+    },
+    {
+      "id": 6,
+      "firstName": "Jola",
+      "lastName": "Jolańska",
+      "birth": "2016-05-02T22:00:00.000Z",
+      "industry": "mercedes"
+    },
+    {
+      "id": 7,
+      "firstName": "Pan",
+      "lastName": "Paweł",
+      "birth": "2022-07-11T22:00:00.000Z",
+      "industry": "saab"
+    },
+    {
+      "id": 8,
+      "firstName": "Pani",
+      "lastName": "Paździoch",
+      "birth": "2022-07-11T22:00:00.000Z",
+      "industry": "Media"
+    },
+    {
+      "id": 9,
+      "firstName": "Pan",
+      "lastName": "Paweł",
+      "birth": "",
+      "industry": ""
+    },
+    {
+      "id": 10,
+      "firstName": null,
+      "lastName": null,
+      "birth": null,
+      "industry": null
+    },
+    {
+      "id": 11,
+      "firstName": "ewqeq",
+      "lastName": "e",
+      "birth": "2022-07-11T22:00:00.000Z",
+      "industry": "Media"
+    },
+    {
+      "id": 12,
+      "firstName": "dadas",
+      "lastName": null,
+      "birth": null,
+      "industry": null
+    },
+    {
+      "id": 13,
+      "firstName": "dasda",
+      "lastName": "sa",
+      "birth": "2022-07-18T22:00:00.000Z",
+      "industry": "Media"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

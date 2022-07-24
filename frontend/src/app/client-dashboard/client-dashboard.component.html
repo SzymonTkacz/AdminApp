@@ -11,81 +11,94 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Surname</th>
-                <th scope="col">Birth Date</th>
-                <th scope="col">Craft</th>
-                <th scope="col">Action</th>
+                <th scope="col">Imię</th>
+                <th scope="col">Nazwisko</th>
+                <th scope="col">Data urodzenia</th>
+                <th scope="col">Branża</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Andrzej</td>
-                <td>Wklakson</td>
-                <td>22.05.1990</td>
-                <td>Finanse</td>
+            <tr *ngFor="let row of clientData" styles="padding: 10px">
+                <td>{{row.firstName}}</td>
+                <td>{{row.lastName}}</td>
+                <td>{{row.birth | date: 'dd/MM/yyyy'}}</td>
+                <td>{{row.industry}}</td>
                 <td>
-                    <button class="btn btn-outline-primary">Edytuj</button>
-                    <button class="btn btn-outline-danger mx-1">Usuń</button>
+                    <button type="button" (click)="onEdit(row)" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-primary">Edytuj</button>
+                    <button class="btn btn-outline-danger mx-1" (click)="deleteClient(row)">Usuń</button>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
-
-
   
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header dark-theme">
-          <h1 class="modal-title" id="exampleModalLabel">Dodawanie klienta</h1>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header dark-theme">
+
+        <div *ngIf="editingClient; else addClientCaption">
+            <h1 class="modal-title" id="exampleModalLabel">Edycja klienta</h1>
         </div>
-        <div class="modal-body">
-            <form [formGroup]="profileForm" class="form-container">
-                <p>
-                    <mat-form-field appearance="legacy" required>
-                        <mat-label>Podaj Imię</mat-label>
-                        <input matInput formControlName="firstName" placeholder="Imię">
-                        <mat-hint></mat-hint>
-                    </mat-form-field>
-                </p>
-                <p>
-                    <mat-form-field appearance="legacy" required>
-                        <mat-label>Podaj Nazwisko</mat-label>
-                        <input matInput formControlName="lastName" placeholder="Nazwisko">
-                        <mat-hint></mat-hint>
-                    </mat-form-field>
-                </p>           
-                <p>
-                    <mat-form-field appearance="legacy">
-                        <mat-label>Branża</mat-label>
-                        <select matNativeControl formControlName="craft">
-                        <option value="volvo">Finanse</option>
-                        <option value="saab">Media</option>
-                        <option value="mercedes">Podróże</option>
-                        </select>
-                    </mat-form-field>
-                </p>
-                <p>
-                    <mat-form-field appearance="legacy">
-                        <mat-label>Data urodzenia</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="birth">
-                        <mat-hint>MM/DD/YYYY</mat-hint>
-                        <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
-                        <mat-datepicker #picker class="modal"></mat-datepicker>
-                    </mat-form-field>
-                </p>
-            </form>          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
-          <button type="button" (click)="saveForm()" class="btn btn-success">Dodaj</button>
-        </div>
-      </div>
+        <ng-template #addClientCaption>
+            <h1 class="modal-title" id="exampleModalLabel">Dodawanie klienta</h1>
+        </ng-template>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
     </div>
-  </div>
+    <div class="modal-body">
+        <form [formGroup]="clientForm" class="form-container">
+            <p>
+                <mat-form-field appearance="legacy" required>
+                    <mat-label>Podaj Imię</mat-label>
+                    <input matInput formControlName="firstName" placeholder="Imię">
+                    <mat-hint></mat-hint>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="legacy" required>
+                    <mat-label>Podaj Nazwisko</mat-label>
+                    <input matInput formControlName="lastName" placeholder="Nazwisko">
+                    <mat-hint></mat-hint>
+                </mat-form-field>
+            </p>           
+            <p>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Branża</mat-label>
+                    <select matNativeControl formControlName="industry">
+                    <option value="Finanse">Finanse</option>
+                    <option value="Media">Media</option>
+                    <option value="Podróże">Podróże</option>
+                    </select>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Data urodzenia</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="birth">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                    <mat-datepicker #picker class="modal"></mat-datepicker>
+                </mat-form-field>
+            </p>
+            <p *ngIf="invalidForm" style="color: red !important;">
+                Wszystkie pola wymagane
+            </p>
+        </form>          
+    </div>
+    <div class="modal-footer">
+        <button type="button" (click)="cancel()" class="btn btn-secondary" #cancelButton data-dismiss="modal">Anuluj</button>
+        <div *ngIf="editingClient; else addButton">
+            <button type="button" (click)="updateClient()" class="btn btn-success">Zapisz zmiany</button>            
+        </div>
+        <ng-template #addButton>
+            <button type="button" (click)="addClient()" class="btn btn-success">Dodaj</button>
+        </ng-template>
+    </div>
+    </div>
+</div>
+</div>
