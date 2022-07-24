@@ -1,5 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { ClientService } from '../services/client.service';
 import { ClientModel } from './client.model';
 
@@ -9,12 +12,16 @@ import { ClientModel } from './client.model';
   styleUrls: ['./client-dashboard.component.scss']
 })
 export class ClientDashboardComponent implements OnInit {
-  clientForm: FormGroup
+  clientForm !: FormGroup
   client = new ClientModel()
   clientData: ClientModel[]
   editingClient = false
   invalidForm = false
-  @ViewChild('cancelButton') cancelButton: ElementRef<HTMLElement>
+  displayedColumns = ['firstName', 'lastName', 'birth', 'industry']
+  dataSource !: MatTableDataSource<any>
+  @ViewChild('cancelButton') cancelButton !: ElementRef<HTMLElement>
+  @ViewChild('paginator') paginator !: MatPaginator
+  @ViewChild(MatSort) matSort !: MatSort
 
   constructor(private formBuilder: FormBuilder, private clientService: ClientService) {}
   ngOnInit(): void {
@@ -30,6 +37,9 @@ export class ClientDashboardComponent implements OnInit {
   getClients() {
     this.clientService.getClients().subscribe(res => {
       this.clientData = res;
+      this.dataSource = new MatTableDataSource(res)
+      this.dataSource.paginator = this.paginator
+      this.dataSource.sort = this.matSort
     })
   }
 
