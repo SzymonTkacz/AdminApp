@@ -6,6 +6,10 @@
     background-color: #28323e;
   }
 
+  .light-theme {
+    background-color: whitesmoke;
+  }
+
   h1, h2 {
     color: white;
   }
@@ -22,4 +26,18 @@
     align-items: center;
     padding-top: 5px;
     padding-bottom: 5px;
+  }
+
+  .single-cell {
+    width: 20%;
+    word-break:break-all;
+  }
+
+  .last-cell {
+    height: 48px;
+    margin-top: 10px;
+  }
+
+  .min-width {
+    min-width: 800px;
   }

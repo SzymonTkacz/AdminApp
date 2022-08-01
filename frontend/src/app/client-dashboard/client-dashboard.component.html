@@ -1,5 +1,5 @@
-<nav class="navbar navbar-light dark-theme">
-    <div class="container">
+<nav class="navbar navbar-light dark-theme min-width">
+    <div class="container min-width">
         <p class="display-4 white-font">Client dashboard</p>
         <div class="d-flex">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">+ Add new client</button>
@@ -7,25 +7,25 @@
     </div>
 </nav>
 
-<div class="container">
-    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%; height: 48px;">
+<div class="container min-width">
+    <table style="table-layout: fixed; width: 100%" mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%; height: 48px;">
 
         <ng-container matColumnDef="firstName">
         <th mat-header-cell mat-sort-header *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+        <td mat-cell *matCellDef="let element" class="single-cell"> {{element.firstName}} </td>
         </ng-container>
 
         <ng-container matColumnDef="lastName">
             <th mat-header-cell mat-sort-header *matHeaderCellDef> Last name </th>
-            <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+            <td mat-cell *matCellDef="let element" class="single-cell"> {{element.lastName}} </td>
         </ng-container>
 
         <ng-container matColumnDef="birth">
             <th mat-header-cell mat-sort-header *matHeaderCellDef> Birth date </th>
-            <td mat-cell *matCellDef="let element"> {{element.birth | date: 'dd/MM/yyyy'}} </td>
+            <td mat-cell *matCellDef="let element" class="single-cell"> {{element.birth | date: 'dd/MM/yyyy'}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="industry" style="height: 48px; margin-top: 10px;">
+        <ng-container matColumnDef="industry" class="last-cell">
             <th mat-header-cell mat-sort-header *matHeaderCellDef> Industry </th>
             <td mat-cell *matCellDef="let element" class="space-between"> 
                 {{element.industry}}
@@ -34,18 +34,9 @@
                     <button class="btn btn-outline-danger mx-1" (click)="deleteClient(element)">Delete</button>
                 </div> 
             </td>
-        </ng-container>
-
-        <ng-container matColumnDef="">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element">
-                <button type="button" (click)="onEdit(element)" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-primary">Edytuj</button>
-                <button class="btn btn-outline-danger mx-1" (click)="deleteClient(element)">Usuń</button>
-            </td>
-        </ng-container>
+        </ng-container>    
     
-    
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="light-theme"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <mat-paginator #paginator
@@ -54,74 +45,73 @@
         aria-label="Select page">
     </mat-paginator>
 </div>
-
   
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-    <div class="modal-header dark-theme">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header dark-theme">
 
-        <div *ngIf="editingClient; else addClientCaption">
-            <h1 class="modal-title" id="exampleModalLabel">Edit a client</h1>
-        </div>
-        <ng-template #addClientCaption>
-            <h1 class="modal-title" id="exampleModalLabel">Adding a client</h1>
-        </ng-template>
+            <div *ngIf="editingClient; else addClientCaption">
+                <h1 class="modal-title" id="exampleModalLabel">Edit a client</h1>
+            </div>
+            <ng-template #addClientCaption>
+                <h1 class="modal-title" id="exampleModalLabel">Adding a client</h1>
+            </ng-template>
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form [formGroup]="clientForm" class="form-container">
-            <p>
-                <mat-form-field appearance="legacy" required>
-                    <mat-label>Enter mame</mat-label>
-                    <input matInput formControlName="firstName" placeholder="Name">
-                    <mat-hint></mat-hint>
-                </mat-form-field>
-            </p>
-            <p>
-                <mat-form-field appearance="legacy" required>
-                    <mat-label>Enter last name</mat-label>
-                    <input matInput formControlName="lastName" placeholder="Last name">
-                    <mat-hint></mat-hint>
-                </mat-form-field>
-            </p>           
-            <p>
-                <mat-form-field appearance="legacy">
-                    <mat-label>Choose industry</mat-label>
-                    <select matNativeControl formControlName="industry">
-                    <option value="Finances">Finances</option>
-                    <option value="Media">Media</option>
-                    <option value="Travels">Travels</option>
-                    </select>
-                </mat-form-field>
-            </p>
-            <p>
-                <mat-form-field appearance="legacy">
-                    <mat-label>Birth date</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="birth">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
-                    <mat-datepicker #picker class="modal"></mat-datepicker>
-                </mat-form-field>
-            </p>
-            <p *ngIf="invalidForm" style="color: red !important;">
-                All fields required
-            </p>
-        </form>          
-    </div>
-    <div class="modal-footer">
-        <button type="button" (click)="cancel()" class="btn btn-secondary" #cancelButton data-dismiss="modal">Cancel</button>
-        <div *ngIf="editingClient; else addButton">
-            <button type="button" (click)="updateClient()" class="btn btn-success">Save changes</button>            
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-        <ng-template #addButton>
-            <button type="button" (click)="addClient()" class="btn btn-success">Add client</button>
-        </ng-template>
+        <div class="modal-body">
+            <form [formGroup]="clientForm" class="form-container">
+                <p>
+                    <mat-form-field appearance="legacy" required>
+                        <mat-label>Enter mame</mat-label>
+                        <input matInput formControlName="firstName" placeholder="Name">
+                        <mat-hint></mat-hint>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field appearance="legacy" required>
+                        <mat-label>Enter last name</mat-label>
+                        <input matInput formControlName="lastName" placeholder="Last name">
+                        <mat-hint></mat-hint>
+                    </mat-form-field>
+                </p>           
+                <p>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Choose industry</mat-label>
+                        <select matNativeControl formControlName="industry">
+                        <option value="Finances">Finances</option>
+                        <option value="Media">Media</option>
+                        <option value="Travels">Travels</option>
+                        </select>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Birth date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="birth">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                        <mat-datepicker #picker class="modal"></mat-datepicker>
+                    </mat-form-field>
+                </p>
+                <p *ngIf="invalidForm" style="color: red !important;">
+                    All fields required. Max field length: 50 characters.
+                </p>
+            </form>          
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="cancel()" class="btn btn-secondary" #cancelButton data-dismiss="modal">Cancel</button>
+            <div *ngIf="editingClient; else addButton">
+                <button type="button" (click)="updateClient()" class="btn btn-success">Save changes</button>            
+            </div>
+            <ng-template #addButton>
+                <button type="button" (click)="addClient()" class="btn btn-success">Add client</button>
+            </ng-template>
+        </div>
+        </div>
     </div>
-    </div>
-</div>
 </div>

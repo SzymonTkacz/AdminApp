@@ -106,7 +106,9 @@ export class ClientDashboardComponent implements OnInit {
 
   private validateEmptyFields() {
     if(!this.client.firstName || !this.client.lastName
-      || !this.client.birth || !this.client.industry) {
+      || !this.client.birth || !this.client.industry 
+      || this.client.firstName?.length > 50 || this.client.lastName?.length > 50)
+      {
         this.invalidForm = true
       }
     else {
