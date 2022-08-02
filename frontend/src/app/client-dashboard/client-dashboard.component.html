@@ -50,68 +50,68 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header dark-theme">
+            <div class="modal-header dark-theme">
 
-            <div *ngIf="editingClient; else addClientCaption">
-                <h1 class="modal-title" id="exampleModalLabel">Edit a client</h1>
-            </div>
-            <ng-template #addClientCaption>
-                <h1 class="modal-title" id="exampleModalLabel">Adding a client</h1>
-            </ng-template>
+                <div *ngIf="editingClient; else addClientCaption">
+                    <h1 class="modal-title" id="exampleModalLabel">Edit a client</h1>
+                </div>
+                <ng-template #addClientCaption>
+                    <h1 class="modal-title" id="exampleModalLabel">Adding a client</h1>
+                </ng-template>
 
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form [formGroup]="clientForm" class="form-container">
-                <p>
-                    <mat-form-field appearance="legacy" required>
-                        <mat-label>Enter mame</mat-label>
-                        <input matInput formControlName="firstName" placeholder="Name">
-                        <mat-hint></mat-hint>
-                    </mat-form-field>
-                </p>
-                <p>
-                    <mat-form-field appearance="legacy" required>
-                        <mat-label>Enter last name</mat-label>
-                        <input matInput formControlName="lastName" placeholder="Last name">
-                        <mat-hint></mat-hint>
-                    </mat-form-field>
-                </p>           
-                <p>
-                    <mat-form-field appearance="legacy">
-                        <mat-label>Choose industry</mat-label>
-                        <select matNativeControl formControlName="industry">
-                        <option value="Finances">Finances</option>
-                        <option value="Media">Media</option>
-                        <option value="Travels">Travels</option>
-                        </select>
-                    </mat-form-field>
-                </p>
-                <p>
-                    <mat-form-field appearance="legacy">
-                        <mat-label>Birth date</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="birth">
-                        <mat-hint>MM/DD/YYYY</mat-hint>
-                        <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
-                        <mat-datepicker #picker class="modal"></mat-datepicker>
-                    </mat-form-field>
-                </p>
-                <p *ngIf="invalidForm" style="color: red !important;">
-                    All fields required. Max field length: 50 characters.
-                </p>
-            </form>          
-        </div>
-        <div class="modal-footer">
-            <button type="button" (click)="cancel()" class="btn btn-secondary" #cancelButton data-dismiss="modal">Cancel</button>
-            <div *ngIf="editingClient; else addButton">
-                <button type="button" (click)="updateClient()" class="btn btn-success">Save changes</button>            
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <ng-template #addButton>
-                <button type="button" (click)="addClient()" class="btn btn-success">Add client</button>
-            </ng-template>
-        </div>
+            <div class="modal-body">
+                <form [formGroup]="clientForm" class="form-container">
+                    <p>
+                        <mat-form-field appearance="legacy" required>
+                            <mat-label>Enter mame</mat-label>
+                            <input matInput formControlName="firstName" placeholder="Name">
+                            <mat-hint></mat-hint>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="legacy" required>
+                            <mat-label>Enter last name</mat-label>
+                            <input matInput formControlName="lastName" placeholder="Last name">
+                            <mat-hint></mat-hint>
+                        </mat-form-field>
+                    </p>           
+                    <p>
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Choose industry</mat-label>
+                            <select matNativeControl formControlName="industry">
+                            <option value="Finances">Finances</option>
+                            <option value="Media">Media</option>
+                            <option value="Travels">Travels</option>
+                            </select>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Birth date</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="birth">
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                            <mat-datepicker #picker class="modal"></mat-datepicker>
+                        </mat-form-field>
+                    </p>
+                    <p *ngIf="invalidForm" style="color: red !important;">
+                        All fields required. Max field length: 50 characters.
+                    </p>
+                </form>          
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="cancel()" class="btn btn-secondary" #cancelButton data-dismiss="modal">Cancel</button>
+                <div *ngIf="editingClient; else addButton">
+                    <button type="button" (click)="updateClient()" class="btn btn-success">Save changes</button>            
+                </div>
+                <ng-template #addButton>
+                    <button type="button" (click)="addClient()" class="btn btn-success">Add client</button>
+                </ng-template>
+            </div>
         </div>
     </div>
 </div>

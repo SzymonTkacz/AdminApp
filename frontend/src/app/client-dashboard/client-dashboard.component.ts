@@ -115,8 +115,4 @@ export class ClientDashboardComponent implements OnInit {
       this.invalidForm = false 
     }
   }
-
-  saveForm() {
-    console.log('Form data is: ', this.clientForm.value)
-  }
 }
