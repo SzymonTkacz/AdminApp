@@ -1,126 +1,158 @@
 {
-  "products": [
+  "clients": [
     {
-      "id": 1,
-      "name": "Product001",
-      "cost": 10,
-      "quantity": 1000,
-      "locationId": 1,
-      "familyId": 1
+      "id": 14,
+      "firstName": "Szymon",
+      "lastName": "Tkacz",
+      "birth": "1990-05-21T22:00:00.000Z",
+      "industry": "Finances"
     },
     {
-      "id": 2,
-      "name": "Product002",
-      "cost": 20,
-      "quantity": 2000,
-      "locationId": 1,
-      "familyId": 2
+      "id": 15,
+      "firstName": "Paweł",
+      "lastName": "Jumper",
+      "birth": "1992-10-20T23:00:00.000Z",
+      "industry": "Media"
     },
     {
-      "id": 3,
-      "name": "Product003",
-      "cost": 30,
-      "quantity": 3000,
-      "locationId": 3,
-      "familyId": 2
+      "id": 16,
+      "firstName": "Marian",
+      "lastName": "Paździoch",
+      "birth": "1942-01-25T22:00:00.000Z",
+      "industry": "Media"
     },
     {
-      "id": 4,
-      "name": "Product004",
-      "cost": 40,
-      "quantity": 4000,
-      "locationId": 2,
-      "familyId": 3
+      "id": 17,
+      "firstName": "Emma",
+      "lastName": "Watson",
+      "birth": "1993-04-04T22:00:00.000Z",
+      "industry": "Media"
     },
     {
-      "id": 5
+      "id": 18,
+      "firstName": "Tom",
+      "lastName": "Hardy",
+      "birth": "1978-12-20T23:00:00.000Z",
+      "industry": "Travels"
     },
     {
-      "id": 6
+      "id": 19,
+      "firstName": "Jennifer",
+      "lastName": "Aniston",
+      "birth": "1972-02-17T23:00:00.000Z",
+      "industry": "Travels"
     },
     {
-      "id": 7
+      "id": 20,
+      "firstName": "Jason",
+      "lastName": "Statham",
+      "birth": "1977-10-01T23:00:00.000Z",
+      "industry": "Finances"
     },
     {
-      "id": 8
+      "id": 21,
+      "firstName": "Katie",
+      "lastName": "Melua",
+      "birth": "1984-09-15T22:00:00.000Z",
+      "industry": "Finances"
     },
     {
-      "id": 9
+      "id": 22,
+      "firstName": "Zlatan",
+      "lastName": "Ibrahimović",
+      "birth": "1981-10-02T23:00:00.000Z",
+      "industry": "Travels"
     },
     {
-      "id": 10
+      "id": 24,
+      "firstName": "John",
+      "lastName": "Travolta",
+      "birth": "1954-02-17T23:00:00.000Z",
+      "industry": "Finances"
     },
     {
-      "id": 11
+      "id": 25,
+      "firstName": "Cameron",
+      "lastName": "Diaz",
+      "birth": "1972-08-29T23:00:00.000Z",
+      "industry": "Media"
     },
     {
-      "id": 12
+      "id": 26,
+      "firstName": "Rick",
+      "lastName": "Sanchez",
+      "birth": "1946-11-10T23:00:00.000Z",
+      "industry": "Travels"
     },
     {
-      "id": 13
+      "id": 27,
+      "firstName": "Matt",
+      "lastName": "Damon",
+      "birth": "1970-10-07T23:00:00.000Z",
+      "industry": "Travels"
     },
     {
-      "id": 14
+      "id": 28,
+      "firstName": "Elon",
+      "lastName": "Musk",
+      "birth": "1962-07-31T22:00:00.000Z",
+      "industry": "Finances"
     },
     {
-      "id": 15
+      "id": 29,
+      "firstName": "Homer",
+      "lastName": "Simpson",
+      "birth": "1968-07-08T23:00:00.000Z",
+      "industry": "Media"
     },
     {
-      "id": 16
+      "id": 30,
+      "firstName": "Ned",
+      "lastName": "Flanders",
+      "birth": "1969-11-23T23:00:00.000Z",
+      "industry": "Finances"
     },
     {
-      "id": 17
+      "id": 31,
+      "firstName": "Angelina",
+      "lastName": "Jolie",
+      "birth": "1975-06-03T23:00:00.000Z",
+      "industry": "Travels"
     },
     {
-      "id": 18
-    }
-  ],
-  "locations": [
-    {
-      "id": 1,
-      "name": "Location001"
+      "id": 32,
+      "firstName": "Tony",
+      "lastName": "Hawk",
+      "birth": "1968-05-11T23:00:00.000Z",
+      "industry": "Travels"
     },
     {
-      "id": 2,
-      "name": "Location002"
+      "id": 33,
+      "firstName": "Colin",
+      "lastName": "McRae",
+      "birth": "1968-08-04T23:00:00.000Z",
+      "industry": "Finances"
     },
     {
-      "id": 3,
-      "name": "Location003"
-    }
-  ],
-  "families": [
-    {
-      "id": 1,
-      "name": "FM001"
+      "id": 34,
+      "firstName": "Deborah",
+      "lastName": "De Luca",
+      "birth": "1980-05-20T22:00:00.000Z",
+      "industry": "Travels"
     },
     {
-      "id": 2,
-      "name": "FM002"
+      "id": 35,
+      "firstName": "Morty",
+      "lastName": "Smith",
+      "birth": "2003-11-27T23:00:00.000Z",
+      "industry": "Finances"
     },
     {
-      "id": 3,
-      "name": "FM003"
-    }
-  ],
-  "transactions": [
-    {
-      "id": 1,
-      "cost": 11,
-      "quantity": 10,
-      "productId": 1
-    },
-    {
-      "id": 2,
-      "cost": 12,
-      "quantity": 100,
-      "productId": 2
-    },
-    {
-      "id": 3,
-      "cost": 15,
-      "quantity": 101,
-      "productId": 3
+      "id": 36,
+      "firstName": "Morgan",
+      "lastName": "Freeman",
+      "birth": "1937-05-31T23:00:00.000Z",
+      "industry": "Media"
     }
   ]
 }
