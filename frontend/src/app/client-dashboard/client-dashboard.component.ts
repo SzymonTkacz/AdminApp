@@ -45,7 +45,7 @@ export class ClientDashboardComponent implements OnInit {
 
   addClient() {
     this.parseClientValues()
-    this.validateEmptyFields()
+    this.validateFields()
     if(!this.invalidForm) {
       this.clientService.addClient(this.client).subscribe(res => {
         alert("Klient został dodany")
@@ -57,7 +57,7 @@ export class ClientDashboardComponent implements OnInit {
 
   updateClient() {
     this.parseClientValues()
-    this.validateEmptyFields()
+    this.validateFields()
     if(!this.invalidForm) {
       this.clientService.updateClient(this.client).subscribe(res => {
         alert("Zmiany zostały zapisane")
@@ -104,7 +104,7 @@ export class ClientDashboardComponent implements OnInit {
     this.getClients()
   }
 
-  private validateEmptyFields() {
+  private validateFields() {
     if(!this.client.firstName || !this.client.lastName
       || !this.client.birth || !this.client.industry 
       || this.client.firstName?.length > 50 || this.client.lastName?.length > 50)

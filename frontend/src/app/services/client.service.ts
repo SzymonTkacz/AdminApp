@@ -29,7 +29,7 @@ export class ClientService {
     }
 
     getClients() {
-        return this.http.get<any>("http://localhost:3000/clients").pipe(map((res:any) => {
+        return this.http.get<any>(this.clientsUrl).pipe(map((res:any) => {
             return res
         }))
     }
