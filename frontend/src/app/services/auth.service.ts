@@ -1,15 +1,20 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
-import { TOUCH_BUFFER_MS } from "@angular/cdk/a11y/input-modality/input-modality-detector";
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-export class AuthService {
-    private adminsUrl = "http://localhost:3000/admins/"
-    constructor(private http: HttpClient) {}
+export class AuthService implements HttpInterceptor {
 
-    login() {
-        this.http.get<any>(this.adminsUrl)
-    }
+  constructor() { }
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let token = localStorage.getItem('Authorization')
+    let jwttoken = req.clone({
+      setHeaders: {
+        Authorization: 'Bearer ' + token
+      }
+    })
+    return next.handle(jwttoken)
+  }
 }

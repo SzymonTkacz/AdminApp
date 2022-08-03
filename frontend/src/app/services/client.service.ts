@@ -7,7 +7,7 @@ import { ClientModel } from "../client-dashboard/client.model";
     providedIn: 'root'
 })
 export class ClientService {
-    private clientsUrl = "http://localhost:3000/clients/"
+    private clientsUrl = "http://localhost:8000/clients/"
     constructor(private http: HttpClient) {}
 
     addClient(data: ClientModel) {

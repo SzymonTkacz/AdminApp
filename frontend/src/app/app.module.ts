@@ -11,11 +11,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { LoginComponent } from './login/login.component';
     MatPaginatorModule,
     MatSortModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
