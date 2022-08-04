@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 import { ClientService } from '../services/client.service';
 import { ClientModel } from './client.model';
 
@@ -23,8 +25,11 @@ export class ClientDashboardComponent implements OnInit {
   @ViewChild('paginator') paginator !: MatPaginator
   @ViewChild(MatSort) matSort !: MatSort
 
-  constructor(private formBuilder: FormBuilder, private clientService: ClientService) {}
+  constructor(private formBuilder: FormBuilder, private clientService: ClientService, private router: Router, private authService: AuthService) {}
   ngOnInit(): void {
+    if(!localStorage.getItem('Authorization')) {
+      this.router.navigate(['login'])
+    }
     this.getClients()
     this.clientForm = this.formBuilder.group({
       firstName:[''],
@@ -34,7 +39,7 @@ export class ClientDashboardComponent implements OnInit {
     })
   }
 
-  getClients() {
+  getClients() {    
     this.clientService.getClients().subscribe(res => {
       this.clientData = res;
       this.dataSource = new MatTableDataSource(res)
@@ -114,5 +119,9 @@ export class ClientDashboardComponent implements OnInit {
     else {
       this.invalidForm = false 
     }
+  }
+
+  logout() {
+    this.authService.logout()
   }
 }
