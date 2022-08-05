@@ -60,7 +60,7 @@
                     <h1 class="modal-title" id="exampleModalLabel">Adding a client</h1>
                 </ng-template>
 
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" (click)="cancel()" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -101,6 +101,9 @@
                     </p>
                     <p *ngIf="invalidForm" style="color: red !important;">
                         All fields required. Max field length: 50 characters.
+                    </p>
+                    <p *ngIf="invalidAge" style="color: red !important;">
+                        Client must be over 18 year old.
                     </p>
                 </form>          
             </div>

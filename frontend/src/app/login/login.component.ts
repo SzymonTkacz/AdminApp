@@ -1,9 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { LoginData } from './login-data';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +10,7 @@ import { LoginData } from './login-data';
 export class LoginComponent implements OnInit {
 
   public loginForm !: FormGroup
-  private loginUrl = "http://localhost:8000/auth/login"
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
 
   ngOnInit() {
     this.authService.checkIfLoggedIn()

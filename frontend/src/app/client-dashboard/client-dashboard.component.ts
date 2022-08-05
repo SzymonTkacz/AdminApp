@@ -19,6 +19,7 @@ export class ClientDashboardComponent implements OnInit {
   clientData: ClientModel[]
   editingClient = false
   invalidForm = false
+  invalidAge = false
   displayedColumns = ['firstName', 'lastName', 'birth', 'industry']
   dataSource !: MatTableDataSource<any>
   @ViewChild('cancelButton') cancelButton !: ElementRef<HTMLElement>
@@ -50,31 +51,33 @@ export class ClientDashboardComponent implements OnInit {
 
   addClient() {
     this.parseClientValues()
+    this.checkIfAdult()
     this.validateFields()
-    if(!this.invalidForm) {
+    if(!this.invalidForm && !this.invalidAge) {
       this.clientService.addClient(this.client).subscribe(res => {
-        alert("Klient został dodany")
+        alert("The client has been added")
         this.cleanAfterSave()
       },
-        err => {console.log("ERROR occured while tried to add client")})
+        err => {console.log("ERROR occurred while tried to add client")})
     }
   }
 
   updateClient() {
     this.parseClientValues()
+    this.checkIfAdult()
     this.validateFields()
-    if(!this.invalidForm) {
+    if(!this.invalidForm && !this.invalidAge) {
       this.clientService.updateClient(this.client).subscribe(res => {
-        alert("Zmiany zostały zapisane")
+        alert("The client has been updated")
         this.cleanAfterSave()
       },
-      err => {console.log("ERROR occured while tried to update client")})
+      err => {console.log("ERROR occurred while tried to update client")})
     }
   }
 
   deleteClient(row: ClientModel) {
     this.clientService.deleteClient(row.id).subscribe(res => {
-      alert("Klient " + row.firstName + " " + row.lastName + " został usunięty")
+      alert("The client " + row.firstName + " " + row.lastName + " has been deleted")
       this.getClients()
     })    
   }
@@ -92,6 +95,7 @@ export class ClientDashboardComponent implements OnInit {
     this.clientForm.reset()
     this.editingClient = false
     this.invalidForm = false
+    this.invalidAge = false
   }
 
   private parseClientValues() {
@@ -106,6 +110,7 @@ export class ClientDashboardComponent implements OnInit {
     this.clientForm.reset()
     this.editingClient = false
     this.invalidForm = false
+    this.invalidAge = false
     this.getClients()
   }
 
@@ -118,6 +123,22 @@ export class ClientDashboardComponent implements OnInit {
       }
     else {
       this.invalidForm = false 
+    }
+  }
+
+  private checkIfAdult() {
+    var birthday = new Date(this.clientForm.value.birth)
+    if(birthday.getTime() > Date.now()) {
+      this.invalidAge = true
+    }
+    var ageDifMs = Date.now() - birthday.getTime()
+    var ageDate = new Date(ageDifMs)
+    var age = Math.abs(ageDate.getUTCFullYear() - 1970)
+    if(age < 18) {
+      this.invalidAge = true
+    }
+    else {
+      this.invalidAge = false
     }
   }
 

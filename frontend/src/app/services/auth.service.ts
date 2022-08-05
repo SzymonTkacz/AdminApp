@@ -50,7 +50,6 @@ export class AuthService implements HttpInterceptor {
           this.router.navigate(['login']);
           return;
         }
-        console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         this.router.navigate(['error']);
       }
     }));
